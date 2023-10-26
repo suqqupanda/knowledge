@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -23,7 +24,7 @@ class UserController extends Controller
     }
 
     /**
-     * 新規ユーザー情報を登録
+     * 必須の新規ユーザー情報を登録
      *
      * @param RegisterRequest $request
      * @return RedirectResponse
@@ -37,7 +38,7 @@ class UserController extends Controller
             $request->name,
             $request->email,
             $request->password,
-            $request->icon
+            $request->icon->store('public/profile_icons')
         );
 
         // 新規登録後そのままログインさせる
@@ -47,4 +48,5 @@ class UserController extends Controller
         // 後に投稿一覧ページにリダイレクトさせる
         return redirect(route('home'));
     }
+    
 }

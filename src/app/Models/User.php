@@ -2,10 +2,8 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -58,7 +56,7 @@ class User extends Authenticatable
         string $name,
         string $email,
         string $password,
-        string $icon
+        string $icon,
     ) : User 
     {
         return $this->create([
@@ -66,6 +64,6 @@ class User extends Authenticatable
             'email' => $email,
             'password' => Hash::make($password),
             'icon' => $icon,
-        ])
+        ]);
     }
 }

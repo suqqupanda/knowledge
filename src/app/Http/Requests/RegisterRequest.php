@@ -28,7 +28,7 @@ class RegisterRequest extends FormRequest
             'email' => ['required', 'string', 'email', 'email:dns', 'email:spoof', 'max:256', 'unique:users'],
             'password' => ['required', 'between:8,24', 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/'],
             'icon' => ['file', 'image', 'max:10240']
-        ]
+        ];
     }
 
     public function messages()
@@ -51,6 +51,6 @@ class RegisterRequest extends FormRequest
             'icon.file' => 'ファイルのアップロードに失敗しました',
             'icon.image' => '画像ファイルでお願いします',
             'icon.max' => 'ファイルのサイズは10MB以下でお願いします',
-        ]
+        ];
     }
 }
