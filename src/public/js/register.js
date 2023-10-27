@@ -1,34 +1,36 @@
-const btnEye = document.getElementById("buttonEye");
+const buttonEye = document.getElementById("buttonEye");
 
-function pushHideButton()
+function handleShowPassword()
 {
     const txtPass = document.getElementById("textPassword");
     if(txtPass.type === "text")
     {
         txtPass.type = "password";
-        btnEye.className = "fa fa-eye";
+        buttonEye.className = "fa fa-eye";
     }
-    else{
+    else
+    {
         txtPass.type = "text";
-        btnEye.className = "fa fa-eye-slash";
+        buttonEye.className = "fa fa-eye-slash";
     }
 }
-btnEye.addEventListener('click', function(){
-    pushHideButton();
-})
+
+buttonEye.addEventListener('click', handleShowPassword())
 
 // アイコンのinput要素
-var iconInput = document.getElementById('icon');
+const iconInput = document.getElementById('icon');
 // プレビューするためのimg要素
-var iconPreview = document.getElementById('icon-preview');
+const iconPreview = document.getElementById('icon-preview');
 
-iconInput.addEventListener('change', function () {
+function setIcon() {
     if (iconInput.files && iconInput.files[0]) {
-        var reader = new FileReader();
+        const reader = new FileReader();
         reader.onload = function (e) {
             iconPreview.src = e.target.result;
             iconPreview.style.display = 'block';
         };
         reader.readAsDataURL(iconInput.files[0]);
     }
-});
+}
+
+iconInput.addEventListener('change', setIcon)

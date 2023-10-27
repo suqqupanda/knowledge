@@ -49,8 +49,8 @@ class RegisterRequest extends FormRequest
             'password.regex' => 'a~z, A~Z, 0~9を最低一つずつ組み合わせて入力してください',
 
             'icon.file' => 'ファイルのアップロードに失敗しました',
-            'icon.image' => '画像ファイルでお願いします',
-            'icon.max' => 'ファイルのサイズは10MB以下でお願いします',
+            'icon.image' => '画像ファイルを選択してください',
+            'icon.max' => '10MB以下のファイルを選択してください',
         ];
     }
 }

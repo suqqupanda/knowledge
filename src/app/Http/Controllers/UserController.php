@@ -38,7 +38,7 @@ class UserController extends Controller
             $request->name,
             $request->email,
             $request->password,
-            $request->icon->store('public/profile_icons')
+            $request->icon->store('public/profileIcons')
         );
 
         // 新規登録後そのままログインさせる
