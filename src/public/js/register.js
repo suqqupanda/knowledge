@@ -15,7 +15,7 @@ function handleShowPassword()
     }
 }
 
-buttonEye.addEventListener('click', handleShowPassword())
+buttonEye.addEventListener('click', handleShowPassword)
 
 // アイコンのinput要素
 const iconInput = document.getElementById('icon');
