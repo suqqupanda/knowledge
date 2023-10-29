@@ -26,8 +26,7 @@
                                         </div>
                                     </div>
                                     <div class="icon-preview-wrapper">
-                                        <img id="icon-preview" src="#" alt="アイコンのプレビュー"
-                                            style="display: none; max-width: 100px; max-height: 100px;">
+                                        <img id="icon-preview" src="{{ asset('storage/noicon/noicon.png') }}">
                                     </div>
                                 </div>
 
