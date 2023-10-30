@@ -23,13 +23,14 @@ const iconInput = document.getElementById('icon');
 const iconPreview = document.getElementById('icon-preview');
 
 function setIcon() {
-    if (iconInput.files && iconInput.files[0]) {
+    const selectedFile = iconInput.files[0];
+    if (iconInput.files && selectedFile) {
         const reader = new FileReader();
         reader.onload = function (e) {
             iconPreview.src = e.target.result;
             iconPreview.style.display = 'block';
         };
-        reader.readAsDataURL(iconInput.files[0]);
+        reader.readAsDataURL(selectedFile);
     }
 }
 

@@ -25,7 +25,7 @@ Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 // 新規登録画面を表示
-Route::get('/user/create', [UserController::class, 'create'])->name('register');
+Route::get('/user/create', [UserController::class, 'displayRegisterPage'])->name('register');
 
 // 新規登録
-Route::post('/user/create', [UserController::class, 'store']);
+Route::post('/user/create', [UserController::class, 'userCreate'])->name('userStore');

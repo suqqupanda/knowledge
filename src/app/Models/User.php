@@ -46,24 +46,14 @@ class User extends Authenticatable
     /**
      * 新規登録
      *
-     * @param string $name
-     * @param string $email
-     * @param string $password
-     * @param string $icon
+     * @param array $registrationData
      * @return User
      */
-    public function register(
-        string $name,
-        string $email,
-        string $password,
-        string $icon,
-    ) : User 
+    public function register(array $registrationData): User 
     {
-        return $this->create([
-            'name' => $name,
-            'email' => $email,
-            'password' => Hash::make($password),
-            'icon' => $icon,
-        ]);
+        // パスワードのハッシュ化
+        $registrationData['password'] = Hash::make($registrationData['password']);
+
+        return $this->create($registrationData);
     }
 }

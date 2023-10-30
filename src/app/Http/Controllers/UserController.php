@@ -18,7 +18,7 @@ class UserController extends Controller
      *
      * @return View
      */
-    public function create(): View
+    public function displayRegisterPage(): View
     {
         return view('auth.register');
     }
@@ -29,24 +29,27 @@ class UserController extends Controller
      * @param RegisterRequest $request
      * @return RedirectResponse
      */
-    public function store(RegisterRequest $request): RedirectResponse
+    public function userCreate(RegisterRequest $request): RedirectResponse
     {
         $userModel = new User();
 
-        $iconPath = 'storage/noicon/noicon.png';
+        $iconPath = config('const.NOICON_PATH');
 
         if ($request->hasFile('icon'))
         {
-            $iconPath = $request->icon->store('public/profileIcons');
+            $iconPath = $request->icon->store(config('const.ICON_PATH'));
         }
 
+        // 登録情報を配列にまとめる
+        $registrationData = [
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => $request->password,
+            'icon' => $iconPath,
+        ];
+
         // 登録情報をデータベースに保存
-        $user = $userModel->register(
-            $request->name,
-            $request->email,
-            $request->password,
-            $iconPath
-        );
+        $user = $userModel->register($registrationData);
 
         // 新規登録後そのままログインさせる
         event(new Registered($user));
@@ -55,5 +58,4 @@ class UserController extends Controller
         // 後に投稿一覧ページにリダイレクトさせる
         return redirect(route('home'));
     }
-    
 }
