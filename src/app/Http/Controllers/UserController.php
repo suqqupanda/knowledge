@@ -33,12 +33,19 @@ class UserController extends Controller
     {
         $userModel = new User();
 
+        $iconPath = 'storage/noicon/noicon.png';
+
+        if ($request->hasFile('icon'))
+        {
+            $iconPath = $request->icon->store('public/profileIcons');
+        }
+
         // 登録情報をデータベースに保存
         $user = $userModel->register(
             $request->name,
             $request->email,
             $request->password,
-            $request->icon->store('public/profileIcons')
+            $iconPath
         );
 
         // 新規登録後そのままログインさせる
