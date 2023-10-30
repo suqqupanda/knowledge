@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\UserRegisterRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Contracts\View\View;
@@ -18,7 +17,7 @@ class UserController extends Controller
      *
      * @return View
      */
-    public function displayRegisterPage(): View
+    public function showRegister(): View
     {
         return view('auth.register');
     }
@@ -26,10 +25,10 @@ class UserController extends Controller
     /**
      * 必須の新規ユーザー情報を登録
      *
-     * @param RegisterRequest $request
+     * @param UserRegisterRequest $request
      * @return RedirectResponse
      */
-    public function userCreate(RegisterRequest $request): RedirectResponse
+    public function create(UserRegisterRequest $request): RedirectResponse
     {
         $userModel = new User();
 
