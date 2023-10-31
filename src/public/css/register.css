@@ -1,0 +1,37 @@
+.password-wrapper{
+    position: relative;
+}
+
+.password-wrapper input[type="password"]{
+    padding-right: 30px;
+    width: 100%;
+}
+
+.password-wrapper #buttonEye{
+    position: absolute;
+    top: 50%;
+    right: 25px;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.custom-file-input {
+    border: none;
+    box-shadow: none;
+    padding: 0;
+}
+
+.icon-preview-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+#icon-preview {
+    position: absolute; /* 位置を絶対指定 */
+    top: 60px; /* y座標を調整 */
+    left: 50px; /* x座標を調整 */
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover; /* 画像を丸く表示 */
+}
