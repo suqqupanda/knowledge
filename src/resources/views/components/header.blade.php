@@ -39,7 +39,7 @@
 
                 @else
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('post') }}">{{ __('投稿') }}</a>
+                        <a class="nav-link" href="{{ route('post.show') }}">{{ __('投稿') }}</a>
                     </li>
 
                     <li class="nav-item dropdown">
