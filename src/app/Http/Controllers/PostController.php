@@ -53,7 +53,19 @@ class PostController extends Controller
         // タイトルと投稿の登録
         $this->postService->create($data);
 
-        // 後にポスト一覧に切り替える
-        return redirect(route('home'));
-    }   
+        return redirect(route('post.index'));
+    }
+
+    /**
+     * 投稿一覧の表示
+     *
+     * @return view
+     */
+    public function indexPost(): View
+    {
+        // 投稿一覧を取得して表示
+        $posts = $this->postService->index();
+
+        return view('post.index', compact('posts'));
+    }
 }

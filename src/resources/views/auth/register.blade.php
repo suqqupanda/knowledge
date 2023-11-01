@@ -26,7 +26,7 @@
                                         </div>
                                     </div>
                                     <div class="icon-preview-wrapper">
-                                        <img id="icon-preview" src="{{ asset('storage/noicon/noicon.png') }}">
+                                        <img id="icon-preview" src="{{ asset('storage/profileIcons/noicon.png') }}">
                                     </div>
                                 </div>
 
