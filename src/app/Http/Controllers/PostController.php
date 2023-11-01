@@ -27,7 +27,7 @@ class PostController extends Controller
     }
 
     /**
-     * インスタンスを生成
+     * コンストラクタ
      *
      * @param PostService $postService
      */
@@ -49,7 +49,7 @@ class PostController extends Controller
             'post' => $request->post
         ];
         // $date = $request->only(['title', 'post']);
-        
+
         // タイトルと投稿の登録
         $this->postService->create($data);
 

@@ -14,7 +14,7 @@ class PostService
     protected $post;
 
     /**
-     * インスタンスを生成
+     * コンストラクタ
      *
      * @param Post $post
      */
