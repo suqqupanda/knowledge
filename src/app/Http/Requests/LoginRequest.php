@@ -24,8 +24,8 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => ['required', 'string', 'email', 'email:dns', 'email:spoof', 'max:256', 'exists:users'],
-            'password' => ['required', 'between:8,24', 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/', 'exists:users'],
+            'email' => ['required', 'string', 'email', 'email:dns', 'email:spoof', 'max:256', 'exists:users,email'],
+            'password' => ['required', 'between:8,24', 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/'],
         ];
     }
 
@@ -41,7 +41,6 @@ class LoginRequest extends FormRequest
             'password.required' => 'パスワードを入力してください',
             'password.between' => '8文字以上24文字以下で入力してください',
             'password.regex' => 'a~z, A~Z, 0~9を最低一つずつ組み合わせて入力してください',
-            'password.exists' => 'パスワードが一致しません',
         ];
     }
 }

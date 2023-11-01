@@ -47,17 +47,11 @@ class LoginController extends Controller
     */
     public function login(LoginRequest $request)
     {
-        return $this->traitLogin($request);
-    }
+        if ($this->attemptLogin($request))
+        {
+            return $this->sendLoginResponse($request);
+        }
 
-    /**
-     * Get the needed authorization credentials from the request.
-     *
-     * @param \App\Http\Requests\LoginRequest $request
-     * @return array
-     */
-    protected function credentials(LoginRequest $request)
-    {
-        return $request->only($this->username(), 'password');
+        return $this->sendFailedLoginResponse($request);
     }
 }
