@@ -64,7 +64,7 @@ class PostController extends Controller
     public function indexPost(): View
     {
         // 投稿一覧を取得して表示
-        $posts = $this->postService->index();
+        $posts = $this->postService->getAllPosts();
 
         return view('post.index', compact('posts'));
     }

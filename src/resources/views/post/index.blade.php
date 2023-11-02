@@ -8,17 +8,15 @@
     <div class="container ">        
         <ul class="list-group">
             @forelse($posts as $post)
-                {{-- <a class="text-decoration-none tweet-card-link" href="{{ route('tweet.show', ['id' => $tweet->id]) }}"> --}}
                     <div class="d-flex align-items-center mb-2">
                         <img id="icon-image" src="{{ asset('storage/profileIcons/' . basename($post->user->icon)) }}">
                         <div>
-                                <strong>{{ $post->user->name }}</strong>
+                            <strong>{{ $post->user->name }}</strong>
                             <li class="list-group-item mb-4 rounded title-container">
-                                    {{ $post->title }}
+                                {{ $post->title }}
                             </li>
                         </div>
                     </div>
-                {{-- </a> --}}
 
             @empty
                 <div class="mb-4 text-center">

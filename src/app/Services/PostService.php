@@ -40,7 +40,7 @@ class PostService
      *
      * @return LengthAwarePaginator
      */
-    public function index(): LengthAwarePaginator
+    public function getAllPosts(): LengthAwarePaginator
     {
         return $this->post->getAllPosts();
     }
