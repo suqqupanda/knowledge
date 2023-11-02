@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Post;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class PostService
 {
@@ -29,8 +30,18 @@ class PostService
      * @param array $data
      * @return void
      */
-    public function create(array $data)
+    public function create(array $data): void
     {
         $this->post->store($data);
+    }
+
+    /**
+     * モデルの全データを取得するメソッドの呼び出し
+     *
+     * @return LengthAwarePaginator
+     */
+    public function getAllPosts(): LengthAwarePaginator
+    {
+        return $this->post->getAllPosts();
     }
 }

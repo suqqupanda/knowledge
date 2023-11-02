@@ -34,9 +34,11 @@ Route::post('/user/create', [UserController::class, 'create'])->name('userStore'
 Route::group(['middleware' => 'auth'], function() {
     // postグループ
     Route::group(['prefix' => 'post', 'as' => 'post'], function() {
-        // post作成画面を表示
+        // 投稿作成画面を表示
         Route::get('/create', [PostController::class, 'showPost'])->name('.show');
-        // postを作成
+        // 投稿を作成
         Route::post('/create', [PostController::class, 'createPost'])->name('.create');
+        // 投稿一覧画面を表示
+        Route::get('/index', [PostController::class, 'indexPost'])->name('.index');
     });
 });

@@ -54,7 +54,6 @@ class UserController extends Controller
         event(new Registered($user));
         Auth::login($user);
 
-        // 後に投稿一覧ページにリダイレクトさせる
-        return redirect(route('home'));
+        return redirect(route('post.index'));
     }
 }
