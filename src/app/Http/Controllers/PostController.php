@@ -73,9 +73,9 @@ class PostController extends Controller
      * 投稿の詳細を表示
      *
      * @param integer $postId
-     * @return View
+     * @return View|Redirectresponse
      */
-    public function detailPost(int $postId): View
+    public function detailPost(int $postId): View|Redirectresponse
     {
         $post = $this->postService->getPostById($postId);
 
