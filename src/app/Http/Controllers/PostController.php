@@ -68,4 +68,23 @@ class PostController extends Controller
 
         return view('post.index', compact('posts'));
     }
+
+    /**
+     * 投稿の詳細を表示
+     *
+     * @param integer $postId
+     * @return View
+     */
+    public function detailPost(int $postId): View
+    {
+        $post = $this->postService->getPostById($postId);
+
+        // 投稿が存在しない場合
+        if (is_null($post))
+        {
+            return redirect(route('post.index'))->with('error', 'Post not found');
+        }
+
+        return view('post.detail', compact('post'));
+    }
 }

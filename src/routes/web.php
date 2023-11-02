@@ -40,5 +40,7 @@ Route::group(['middleware' => 'auth'], function() {
         Route::post('/create', [PostController::class, 'createPost'])->name('.create');
         // 投稿一覧画面を表示
         Route::get('/index', [PostController::class, 'indexPost'])->name('.index');
+        // 投稿詳細画面を表示
+        Route::get('/detail/{id}', [PostController::class, 'detailPost'])->name('.detail');
     });
 });
