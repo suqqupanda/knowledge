@@ -43,4 +43,7 @@
             </div>
         </div>
     </div>
+    <div class="date-container">
+        {{ $post->created_at->format('Y年m月d日') }}
+    </div>
 @endsection
