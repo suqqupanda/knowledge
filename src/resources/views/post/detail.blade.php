@@ -31,13 +31,29 @@
                             </div>
                         </div>
 
-                        <div class="row mb-4 justify-content-center">
-                            <div class="col-md-4 d-flex justify-content-center">
-                                <a href="{{ route('post.index') }}" class="btn btn-light btn-outline-dark rounded-pill">
-                                    {{ __('戻る') }}
-                                </a>
+                        {{-- ログインしているユーザーが投稿の持ち主であれば --}}
+                        @if ($post->user->id === Auth::id())
+                            <div class="row mb-4 justify-content-center">
+                                <div class="col-md-6 d-flex justify-content-between">
+                                    <a href="{{ route('post.index') }}" class="btn btn-light btn-outline-dark rounded-pill">
+                                        {{ __('戻る') }}
+                                    </a>
+                                    <a href="{{ route('post.showUpdate', ['id' => $post->id]) }}" class="btn btn-light btn-outline-dark rounded-pill">
+                                        {{ __('編集') }}
+                                    </a>
+                                </div>
                             </div>
-                        </div>
+                        
+                        @else
+                            <div class="row mb-4 justify-content-center">
+                                <div class="col-md-4 d-flex justify-content-center">
+                                    <a href="{{ route('post.index') }}" class="btn btn-light btn-outline-dark rounded-pill">
+                                        {{ __('戻る') }}
+                                    </a>
+                                </div>
+                            </div>
+                        @endif
+
                     </div>
                 </div>
             </div>

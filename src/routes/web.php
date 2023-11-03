@@ -42,5 +42,9 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/index', [PostController::class, 'indexPost'])->name('.index');
         // 投稿詳細画面を表示
         Route::get('/detail/{id}', [PostController::class, 'detailPost'])->name('.detail');
+        // 投稿の編集画面を表示
+        Route::get('/update/{id}', [PostController::class, 'showUpdatePost'])->name('.showUpdate');
+        // 編集された投稿の情報を更新
+        Route::put('/update/{id}', [PostController::class, 'updatePost'])->name('.update');
     });
 });

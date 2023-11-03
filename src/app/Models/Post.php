@@ -68,4 +68,14 @@ class Post extends Model
     {
         return Post::find($postId);
     }
+
+    public function updatePost(array $postData, int $postId)
+    {
+        $post = $this->getPostById($postId);
+
+        $post->title = $postData['title'];
+        $post->post = $postData['post'];
+
+        $post->update();
+    }
 }

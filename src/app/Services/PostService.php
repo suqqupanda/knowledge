@@ -55,4 +55,9 @@ class PostService
     {
         return $this->post->getPostById($postId);
     }
+
+    public function updatePost(array $postData, int $postId)
+    {
+        return $this->post->updatePost($postData, $postId);
+    }
 }

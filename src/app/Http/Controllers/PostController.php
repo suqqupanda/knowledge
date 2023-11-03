@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PostRequest;
 use App\Services\PostService;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Contracts\View\View;
 
@@ -84,6 +85,31 @@ class PostController extends Controller
         {
             return redirect(route('post.index'))->with('error', 'Post not found');
         }
+
+        return view('post.detail', compact('post'));
+    }
+
+    public function showUpdatePost(int $postId)
+    {
+        $post = $this->postService->getPostById($postId);
+
+        return view('post.update', compact('post'));
+    }
+
+    public function updatePost(PostRequest $request, int $postId)
+    {
+        // リクエストから必要な情報を抽出して配列に
+        $postData = $request->only(['title', 'post']);
+
+        // 投稿の持ち主のユーザーidとログインしているユーザーのidを比較
+        if (Auth::id() !== $this->postService->getPostById($postId)->user_id)
+        {
+            return redirect(route('post.index'));
+        }
+
+        $this->postService->updatePost($postData, $postId);
+
+        $post = $this->postService->getPostById($postId);
 
         return view('post.detail', compact('post'));
     }
