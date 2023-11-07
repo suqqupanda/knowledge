@@ -20,7 +20,6 @@
                     </div>
                 </div>
 
-
             @empty
                 <div class="mb-4 text-center">
                     <li class="list-group-item rounded">投稿は存在しません</li>

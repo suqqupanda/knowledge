@@ -46,5 +46,7 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/update/{id}', [PostController::class, 'showUpdatePost'])->name('.showUpdate');
         // 編集された投稿の情報を更新
         Route::put('/update/{id}', [PostController::class, 'updatePost'])->name('.update');
+        // 投稿を削除
+        Route::delete('/delete/{id}', [PostController::class, 'deletePost'])->name('.delete');
     });
 });

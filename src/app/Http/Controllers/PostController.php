@@ -73,7 +73,7 @@ class PostController extends Controller
     /**
      * 投稿の詳細を表示
      *
-     * @param integer $postId
+     * @param int $postId
      * @return View|Redirectresponse
      */
     public function detailPost(int $postId): View|Redirectresponse
@@ -89,17 +89,38 @@ class PostController extends Controller
         return view('post.detail', compact('post'));
     }
 
-    public function showUpdatePost(int $postId)
+    /**
+     * 投稿編集画面を表示
+     *
+     * @param int $postId
+     * @return View
+     */
+    public function showUpdatePost(int $postId): View
     {
         $post = $this->postService->getPostById($postId);
 
         return view('post.update', compact('post'));
     }
 
-    public function updatePost(PostRequest $request, int $postId)
+    /**
+     * 編集された投稿の情報を更新
+     *
+     * @param PostRequest $request
+     * @param int $postId
+     * @return View|RedirectResponse
+     */
+    public function updatePost(PostRequest $request, int $postId): View|RedirectResponse
     {
         // リクエストから必要な情報を抽出して配列に
         $postData = $request->only(['title', 'post']);
+
+        $post = $this->postService->getPostById($postId);
+        
+        // 投稿が存在しない場合
+        if (is_null($post))
+        {
+            return redirect()->route('post.index')->with('error', 'Post not found');
+        }
 
         // 投稿の持ち主のユーザーidとログインしているユーザーのidを比較
         if (Auth::id() !== $this->postService->getPostById($postId)->user_id)
@@ -109,8 +130,27 @@ class PostController extends Controller
 
         $this->postService->updatePost($postData, $postId);
 
+        return view('post.detail', compact('post'));
+    }
+
+    public function deletePost(int $postId)
+    {
         $post = $this->postService->getPostById($postId);
 
-        return view('post.detail', compact('post'));
+        // 投稿が存在しない場合
+        if (is_null($post))
+        {
+            return redirect()->route('post.index')->with('error', 'Post not found');
+        }
+
+        // 投稿がログインしているユーザーのものではない場合
+        if (Auth::id() !== $post->user_id)
+        {
+            return redirect()->route('post.index')->with('error', 'You cannot delete post from others');
+        }
+
+        $this->postService->deletePost($postId);
+
+        return redirect(route('post.index'));
     }
 }
