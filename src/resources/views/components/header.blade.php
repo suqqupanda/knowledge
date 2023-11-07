@@ -5,7 +5,7 @@
         }
     </style>
     <div class="container">
-        <a class="navbar-brand" href="{{ url('/') }}">
+        <a class="navbar-brand" href="{{ route('post.index') }}">
             Knowledge
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
