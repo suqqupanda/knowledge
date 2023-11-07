@@ -93,11 +93,16 @@ class PostController extends Controller
      * 投稿編集画面を表示
      *
      * @param int $postId
-     * @return View
+     * @return View|RedirectResponse
      */
-    public function showUpdatePost(int $postId): View
+    public function showUpdatePost(int $postId): View|RedirectResponse
     {
         $post = $this->postService->getPostById($postId);
+
+        // 投稿が存在しない場合はリダイレクト
+        if (is_null($post)) {
+            return redirect()->route('post.index')->with('error', '投稿が見つかりません。');
+        }
 
         return view('post.update', compact('post'));
     }
@@ -111,29 +116,34 @@ class PostController extends Controller
      */
     public function updatePost(PostRequest $request, int $postId): View|RedirectResponse
     {
-        // リクエストから必要な情報を抽出して配列に
-        $postData = $request->only(['title', 'post']);
-
+        // 最初に投稿を取得
         $post = $this->postService->getPostById($postId);
-        
-        // 投稿が存在しない場合
-        if (is_null($post))
-        {
-            return redirect()->route('post.index')->with('error', 'Post not found');
+    
+        // 投稿が存在しない場合はリダイレクト
+        if (is_null($post)) {
+            return redirect()->route('post.index')->with('error', '投稿が見つかりません。');
         }
-
-        // 投稿の持ち主のユーザーidとログインしているユーザーのidを比較
-        if (Auth::id() !== $this->postService->getPostById($postId)->user_id)
-        {
-            return redirect(route('post.index'));
+    
+        // 投稿の持ち主がログインユーザーでなければリダイレクト
+        if (Auth::id() !== $post->user_id) {
+            return redirect(route('post.index'))->with('error', 'この操作は許可されていません。');
         }
-
+    
+        // リクエストからデータを取得して更新
+        $postData = $request->only(['title', 'post']);
         $this->postService->updatePost($postData, $postId);
-
+    
+        // 更新された投稿を取得してビューに渡す
         return view('post.detail', compact('post'));
     }
-
-    public function deletePost(int $postId)
+    
+    /**
+     * 投稿を削除
+     *
+     * @param int $postId
+     * @return RedirectResponse
+     */
+    public function deletePost(int $postId): RedirectResponse
     {
         $post = $this->postService->getPostById($postId);
 
