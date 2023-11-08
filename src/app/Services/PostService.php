@@ -48,11 +48,34 @@ class PostService
     /**
      * モデルの特定の投稿を取得するメソッドの呼び出し
      *
-     * @param integer $postId
+     * @param int $postId
      * @return Post|null
      */
     public function getPostById(int $postId): Post|null
     {
         return $this->post->getPostById($postId);
+    }
+
+    /**
+     * モデルの編集された投稿の情報を更新するメソッドの呼び出し
+     *
+     * @param array $postData
+     * @param int $postId
+     * @return void
+     */
+    public function updatePost(array $postData, int $postId): void
+    {
+        $this->post->updatePost($postData, $postId);
+    }
+
+    /**
+     * モデルの投稿を削除するメソッドの呼び出し
+     *
+     * @param int $postId
+     * @return void
+     */
+    public function deletePost(int $postId): void
+    {
+        $this->post->deletePost($postId);
     }
 }

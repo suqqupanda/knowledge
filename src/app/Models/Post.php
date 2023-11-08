@@ -61,11 +61,43 @@ class Post extends Model
     /**
      * 特定の投稿の情報を取得
      *
-     * @param integer $postId
+     * @param int $postId
      * @return Post|null
      */
     public function getPostById(int $postId): Post|null
     {
         return Post::find($postId);
+    }
+
+    /**
+     * 編集された投稿の情報を更新
+     *
+     * @param array $postData
+     * @param int $postId
+     * @return void
+     */
+    public function updatePost(array $postData, int $postId): void
+    {
+        // 指定したIDの投稿を取得
+        $post = $this->getPostById($postId);
+
+        $post->title = $postData['title'];
+        $post->post = $postData['post'];
+
+        $post->update();
+    }
+
+    /**
+     * 投稿を削除
+     *
+     * @param int $postId
+     * @return void
+     */
+    public function deletePost(int $postId): void
+    {
+        // 指定したIDの投稿を取得
+        $post = $this->getPostById($postId);
+
+        $post->delete();
     }
 }
