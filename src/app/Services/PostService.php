@@ -61,21 +61,21 @@ class PostService
      *
      * @param array $postData
      * @param int $postId
-     * @return
+     * @return void
      */
-    public function updatePost(array $postData, int $postId)
+    public function updatePost(array $postData, int $postId): void
     {
-        return $this->post->updatePost($postData, $postId);
+        $this->post->updatePost($postData, $postId);
     }
 
     /**
      * モデルの投稿を削除するメソッドの呼び出し
      *
      * @param int $postId
-     * @return 
+     * @return void
      */
-    public function deletePost(int $postId)
+    public function deletePost(int $postId): void
     {
-        return $this->post->deletePost($postId);
+        $this->post->deletePost($postId);
     }
 }
