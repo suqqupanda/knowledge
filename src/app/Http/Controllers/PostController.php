@@ -83,7 +83,7 @@ class PostController extends Controller
         // 投稿が存在しない場合
         if (is_null($post))
         {
-            return redirect(route('post.index'))->with('error', 'Post not found');
+            return redirect(route('post.index'))->with('error', '投稿が見つかりません。');
         }
 
         return view('post.detail', compact('post'));
@@ -99,7 +99,7 @@ class PostController extends Controller
     {
         $post = $this->postService->getPostById($postId);
 
-        // 投稿が存在しない場合はリダイレクト
+        // 投稿が存在しない場合
         if (is_null($post)) {
             return redirect()->route('post.index')->with('error', '投稿が見つかりません。');
         }
@@ -116,15 +116,15 @@ class PostController extends Controller
      */
     public function updatePost(PostRequest $request, int $postId): View|RedirectResponse
     {
-        // 最初に投稿を取得
+        // 投稿を取得
         $post = $this->postService->getPostById($postId);
     
-        // 投稿が存在しない場合はリダイレクト
+        // 投稿が存在しない場合
         if (is_null($post)) {
             return redirect()->route('post.index')->with('error', '投稿が見つかりません。');
         }
     
-        // 投稿の持ち主がログインユーザーでなければリダイレクト
+        // 投稿がログインユーザーのものではない場合
         if (Auth::id() !== $post->user_id) {
             return redirect(route('post.index'))->with('error', 'この操作は許可されていません。');
         }
@@ -133,7 +133,6 @@ class PostController extends Controller
         $postData = $request->only(['title', 'post']);
         $this->postService->updatePost($postData, $postId);
     
-        // 更新された投稿を取得してビューに渡す
         return view('post.detail', compact('post'));
     }
     
