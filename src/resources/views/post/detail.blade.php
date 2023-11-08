@@ -86,9 +86,12 @@
                 <form method="POST" action="{{ route('post.delete', $post->id) }}">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="btn btn-light btn-outline-dark rounded-pill btn-delete-text">{{ __('削除') }}</button>
+                    <button type="submit"
+                        class="btn btn-light btn-outline-dark rounded-pill btn-delete-text">{{ __('削除') }}</button>
                 </form>
-                <button type="button" class="btn btn-light btn-outline-dark rounded-pill mb-2">{{ __('キャンセル') }}</button>
+                <a href="{{ route('post.detail', $post->id) }}" class="btn btn-light btn-outline-dark rounded-pill">
+                    {{ __('キャンセル') }}
+                </a>
             </div>
         </div>
     </div>
