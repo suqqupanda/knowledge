@@ -1,0 +1,13 @@
+#icon-image {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%; /* アイコンを丸くする */
+    object-fit: cover; 
+    margin-right: 10px; /* 画像と名前の間に少し間隔を入れる */
+    transform: translate(45px,75px);
+}
+
+.date-container {
+    text-align: right;
+    margin-right: 12%;  /* またはお好みの値に変更 */
+    }

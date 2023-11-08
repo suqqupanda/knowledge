@@ -36,12 +36,23 @@ class PostService
     }
 
     /**
-     * モデルの全データを取得するメソッドの呼び出し
+     * モデルの全投稿を取得するメソッドの呼び出し
      *
      * @return LengthAwarePaginator
      */
     public function getAllPosts(): LengthAwarePaginator
     {
         return $this->post->getAllPosts();
+    }
+
+    /**
+     * モデルの特定の投稿を取得するメソッドの呼び出し
+     *
+     * @param integer $postId
+     * @return Post|null
+     */
+    public function getPostById(int $postId): Post|null
+    {
+        return $this->post->getPostById($postId);
     }
 }

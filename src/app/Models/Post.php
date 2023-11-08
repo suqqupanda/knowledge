@@ -24,6 +24,16 @@ class Post extends Model
     ];
 
     /**
+     * usersテーブルとtweetsテーブルのリレーションを貼る
+     *
+     * @return BelongsTo
+     */
+    public function user():BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    /**
      * 投稿を登録
      *
      * @param array $data
@@ -49,12 +59,13 @@ class Post extends Model
     }
 
     /**
-     * usersテーブルとtweetsテーブルのリレーションを貼る
+     * 特定の投稿の情報を取得
      *
-     * @return BelongsTo
+     * @param integer $postId
+     * @return Post|null
      */
-    public function user():BelongsTo
+    public function getPostById(int $postId): Post|null
     {
-        return $this->belongsTo(User::class);
+        return Post::find($postId);
     }
 }

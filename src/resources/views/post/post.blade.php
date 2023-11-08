@@ -45,7 +45,7 @@
 
                         <div class="row mb-0 justify-content-center">
                             <div class="col-md-2">
-                            <a href="{{ route('home') }}" class="btn btn-light btn-outline-dark rounded-pill">
+                            <a href="{{ route('post.index') }}" class="btn btn-light btn-outline-dark rounded-pill">
                                 {{ __('キャンセル') }}
                             </a>
                             </div>
