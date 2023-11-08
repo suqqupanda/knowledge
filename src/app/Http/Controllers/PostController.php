@@ -132,6 +132,7 @@ class PostController extends Controller
         // リクエストからデータを取得して更新
         $postData = $request->only(['title', 'post']);
         $this->postService->updatePost($postData, $postId);
+        $post = $this->postService->getPostById($postId);
     
         return view('post.detail', compact('post'));
     }
