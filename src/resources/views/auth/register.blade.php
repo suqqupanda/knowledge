@@ -77,12 +77,12 @@
                                     class="col-md-4 col-form-label text-md-end">{{ __('パスワード') }}</label>
 
                                 <div class="col-md-6">
-                                    <div class="password-wrapper">
-                                        <input id ="textPassword" type="password"
-                                            class="form-control @error('password') is-invalid @enderror" name="password"
-                                            required autocomplete="new-password">
-                                        <span id="buttonEye" class="fa fa-eye"></span>
-
+                                    <div class="input-group">
+                                        <input type="password" class="form-control @error("password") is-invalid @enderror" id="textPassword"
+                                            name="password">
+                                        <span class="input-group-text">
+                                            <i class="fa fa-eye" id="buttonEye" style="cursor: pointer;"></i>
+                                        </span>
                                         @error('password')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -91,6 +91,7 @@
                                     </div>
                                 </div>
                             </div>
+
 
                             <div class="row mb-0">
                                 <div class="col-md-6 offset-md-3 text-center">
