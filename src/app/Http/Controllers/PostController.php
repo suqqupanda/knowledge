@@ -104,6 +104,11 @@ class PostController extends Controller
             return redirect()->route('post.index')->with('error', '投稿が見つかりません。');
         }
 
+        // 投稿がログインユーザーのものではない場合
+        if (Auth::id() !== $post->user_id) {
+            return redirect(route('post.index'))->with('error', 'この操作は許可されていません。');
+        }        
+
         return view('post.update', compact('post'));
     }
 
