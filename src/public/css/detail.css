@@ -1,0 +1,27 @@
+#icon-image {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%; /* アイコンを丸くする */
+    object-fit: cover; 
+    margin-right: 10px; /* 画像と名前の間に少し間隔を入れる */
+    transform: translate(45px,75px);
+}
+
+.date-container {
+    text-align: right;
+    margin-right: 12%;
+    }
+
+.modal-large-text {
+    font-size: 1.25rem;
+}
+    
+.modal-header.no-border,
+.modal-footer.no-border {
+    border: 0 !important;
+}
+
+.btn-delete-text {
+    color: red;
+    padding:5px 30px;
+}
