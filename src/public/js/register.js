@@ -6,12 +6,12 @@ function handleShowPassword()
     if(txtPass.type === "text")
     {
         txtPass.type = "password";
-        buttonEye.className = "fa fa-eye";
+        buttonEye.className = "fa fa-eye-slash";
     }
     else
     {
         txtPass.type = "text";
-        buttonEye.className = "fa fa-eye-slash";
+        buttonEye.className = "fa fa-eye";
     }
 }
 
